@@ -1,0 +1,110 @@
+-- 1
+-- select productid, sum(price) as total_revenue from product
+-- group by productid;
+-- 2
+-- select ProductID, ProductName, sum(price) as TotalRevenue
+-- from product
+-- group by  ProductID, ProductName
+-- order by  TotalRevenue desc
+-- limit 3;
+-- 3
+-- SELECT COUNT(Userid) AS TotalGoldUsers
+-- FROM Golduser;
+-- 4
+-- select g.userid, sum(price) as GoldUserRevenue
+-- from product p join sales s on p.productid= p.productid
+-- join golduser g on s.userid= G.userid
+-- where g.userid in (select g.Userid from Golduser)
+-- group by g.userid, price;
+-- 5
+-- select  sum(price) as TotalGoldUserRevenue
+-- from product p join sales s on p.productid= p.productid
+-- join golduser g on s.userid= G.userid
+-- where g.userid in (select g.Userid from Golduser)
+-- group by price;
+-- 6
+-- SELECT UserID, DATEDIFF(current_date(), SignupDate) AS DaysAsGoldUser
+-- FROM Golduser;
+-- 7
+-- select s.ProductID,productname, count(*) as PurchaseCount
+-- from Sales s join product p on s.productid=p.productid
+-- where UserID in (select UserID from Golduser)
+-- group by s.ProductID,productname
+-- order by PurchaseCount desc
+-- limit 1;
+-- 8
+-- select s.productid, created_date as year, SUM(price) AS TotalRevenue
+-- from Sales  s join product p on s.productid=p.productid
+-- group by s.productid,created_date,price
+-- order by TotalRevenue;
+-- 9
+-- select extract(year from created_date) as SaleYear,sum(price) as TotalRevenue
+-- from Sales s join product p on s.productid=p.productid
+-- group by SaleYear
+-- order by SaleYear;
+-- 10
+-- select (select count(UserID) from Golduser) * 1.0 / (select count(UserID) from Userr) as AvgGoldSignUp;
+-- 11
+-- select g.Userid, count(s.userid) as NumberOfOrders
+-- from golduser g join sales s on g.userid= s.userid
+-- where g.UserID in (select Userid from Golduser)
+-- group by g.UserID
+-- order by g.userid; 
+-- 12
+-- select s.userid,names, sum(price) as TotalSpent
+-- from product p join sales s on p.productid= s.productid
+-- join username u on s.userid= u.userid
+-- group by s.userid,Names
+-- order by totalspent desc;
+-- 13
+-- select s.userid,names, count(distinct created_date) as VisitFrequency
+-- from Sales s join username u on s.userid= u.userid
+-- group by s.userid,Names;
+-- 14
+-- select s.userid, productname, min(distinct created_date) as FirstOrderDate, s.Productid
+-- from Sales s join product p on s.productid= p.productid
+-- group by Userid, productname, s.Productid
+-- order by FirstOrderDate;
+-- 15
+-- select s.Productid, productname, count(*) as PurchaseCount
+-- from Sales s join product p on s.productid=p.productid
+-- group by s.Productid,productname
+-- order by PurchaseCount desc;
+-- 16
+-- select s.userid, names, productname,s.Productid, count(*) as PurchaseCount
+-- from product p join sales s on p.productid= s.productid
+-- join username u on s.userid= u.userid 
+-- group by s.userid,u.names,productname,s.Productid; 
+-- 17
+-- select S.Userid, s.Productid, productname, min(created_date) as FirstPurchaseDate
+-- from Sales s join Golduser g on S.Userid = G.Userid
+-- join product p on s.productid= p.productid
+-- where created_date >= SignupDate
+-- group by S.Userid, s.Productid,productname;
+-- 18
+-- select s.Userid, s.Productid,productname, created_date,signup_date
+-- from Sales s join Golduser g on S.Userid = G.Userid
+-- join userr ur on s.userid= ur.userid
+-- join product p on s.productid= p.productid
+-- where created_date > SignupDate;
+-- 19
+-- select S.userid,productname, count(s.userid) as TotalOrders, sum(price) as AmountSpent
+-- from Sales s join Golduser g on S.Userid = G.Userid
+-- join userr ur on s.userid= ur.userid
+-- join product p on s.productid= p.productid	
+-- where created_date > SignupDate
+-- group by S.Userid,productname;
+-- 20
+-- select Userid, created_date,
+-- rank() over (partition by Userid order by created_date) as TransactionRank,
+-- case when Userid in (select Userid from Golduser) then 'Gold' else 'NA' end as MemberStatus
+-- from Sales;
+
+
+
+
+
+
+
+
+
